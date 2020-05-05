@@ -95,13 +95,14 @@ class OxfordIIITPet(tfds.core.GeneratorBasedBuilder):
             extract_method=tfds.download.ExtractMethod.TAR)
     })
 
-    images_path_dir = os.path.join(dl_paths["images"], "images")
-    annotations_path_dir = os.path.join(dl_paths["annotations"], "annotations")
-
+    images_path_dir = dl_paths["images"] + "/images"
+    annotations_path_dir = dl_paths["annotations"] + "/annotations"
+    
     # Setup train and test splits
     train_split = tfds.core.SplitGenerator(
         name="train",
         gen_kwargs={
+           
             "images_dir_path": images_path_dir,
             "annotations_dir_path": annotations_path_dir,
             "images_list_file": os.path.join(annotations_path_dir,
